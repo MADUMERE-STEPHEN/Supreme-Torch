@@ -1,0 +1,102 @@
+<section class="admin-upload-section py-5 bg-light" id="upload-result">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-primary animate__animated animate__fadeInDown">Upload Student Result</h2>
+      <p class="text-muted animate__animated animate__fadeIn">Fill in the details to record a student's academic performance.</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-9 col-xl-8">
+        <div class="card border-0 shadow-lg p-4 rounded-4">
+          <form (ngSubmit)="uploadResult()" #uploadForm="ngForm" autocomplete="off">
+            <div class="row g-4">
+
+              <div class="col-md-4">
+                <label class="form-label fw-semibold">Class</label>
+                <select class="form-select form-select-lg" [(ngModel)]="newResult.class" name="class" (change)="onClassOrDepartmentChange()" required>
+                  <option value="" disabled selected>Select Class</option>
+                  <option *ngFor="let className of classNames" [value]="className">{{ className }}</option>
+                </select>
+              </div>
+              <div class="col-md-4" *ngIf="!isJssClass(newResult.class)">
+                <label class="form-label fw-semibold">Department</label>
+                <select class="form-select form-select-lg" [(ngModel)]="selectedDepartment" name="department" (change)="onClassOrDepartmentChange()" required>
+                  <option value="" disabled selected>Select Department</option>
+                  <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+                </select>
+              </div>
+              <div class="col-md-4" *ngIf="studentsInClass.length > 0">
+                <label class="form-label fw-semibold">Student Name</label>
+                <select class="form-select form-select-lg" [(ngModel)]="newResult.fullName" name="studentName" required>
+                  <option value="" disabled selected>Select Student</option>
+                  <option *ngFor="let student of studentsInClass" [value]="student.fullName">{{ student.fullName }}</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label fw-semibold">Term</label>
+                <select class="form-select form-select-lg" [(ngModel)]="newResult.term" name="term" required>
+                  <option value="" disabled selected>Select</option>
+                  <option>1st Term</option>
+                  <option>2nd Term</option>
+                  <option>3rd Term</option>
+                </select>
+              </div>
+              
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Admission Number</label>
+                <input type="text" class="form-control form-control-lg" [(ngModel)]="newResult.admissionNumber" name="admissionNumber" required placeholder="e.g. ST/1234">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label fw-semibold">Session</label>
+                <input type="text" class="form-control form-control-lg" [(ngModel)]="newResult.session" name="session" required placeholder="e.g. 2024/2025">
+              </div>
+         
+            </div>
+
+            <!-- SUBJECTS SECTION -->
+            <hr class="my-5">
+            <div>
+              <h5 class="fw-bold mb-4 text-primary">Subjects & Scores</h5>
+              <div *ngFor="let subject of newResult.results; let i = index" class="row align-items-center g-3 mb-3">
+                <div class="col-md-4">
+                  <input type="text" class="form-control form-control-lg" [(ngModel)]="subject.subject" name="subject{{i}}" required placeholder="Subject name">
+                </div>
+                <div class="col-md-2">
+                  <input type="number" class="form-control form-control-lg" [(ngModel)]="subject.test" name="test{{i}}" required placeholder="Test" min="0" max="40" (ngModelChange)="updateSubjectTotal(i)">
+                </div>
+                <div class="col-md-2">
+                  <input type="number" class="form-control form-control-lg" [(ngModel)]="subject.exam" name="exam{{i}}" required placeholder="Exam" min="0" max="60" (ngModelChange)="updateSubjectTotal(i)">
+                </div>
+                <div class="col-md-2">
+                  <input type="number" class="form-control form-control-lg bg-light" [value]="subject.total" name="total{{i}}" placeholder="Total" readonly tabindex="-1">
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-outline-danger btn-lg w-100" type="button" (click)="removeSubject(i)" title="Remove Subject">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </div>
+              <button class="btn btn-outline-primary mt-3 px-4 rounded-pill" type="button" (click)="addSubject()" [disabled]="selectedDepartment">
+                <i class="bi bi-plus-lg me-1"></i> Add Subject
+              </button>
+            </div>
+
+            <!-- After the subjects section, show total and percentage -->
+            <div class="row mt-4">
+              <div class="col-md-6">
+                <div class="alert alert-info text-start">
+                  <strong>Total Score:</strong> {{ totalScore }}<br>
+                  <strong>Percentage:</strong> {{ percentage | number:'1.2-2' }}%
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 d-grid">
+              <button type="submit" class="btn btn-success btn-lg rounded-pill shadow-sm">Submit Result</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

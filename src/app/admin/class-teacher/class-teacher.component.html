@@ -1,0 +1,50 @@
+<div class="ct-container">
+  <div class="ct-card">
+    <h2><i class="fa-solid fa-chalkboard-teacher ct-icon"></i> Class Teacher Portal</h2>
+    <div class="ct-form-row">
+      <select [(ngModel)]="selectedClass" (change)="onClassChange()" class="ct-select">
+        <option value="" disabled selected>Select Class</option>
+        <option *ngFor="let c of classNames" [value]="c">{{c}}</option>
+      </select>
+      <select class="form-select form-select-lg"
+        [(ngModel)]="selectedDepartment"
+        (change)="onDepartmentChange()"
+        *ngIf="showDepartment">
+        <option value="" disabled selected>Select Department</option>
+        <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+      </select>
+      <input [(ngModel)]="classPasscode" type="password" placeholder="Class Passcode" class="ct-input" />
+      <button (click)="verifyClassAccess()" class="ct-btn">Access</button>
+    </div>
+    <div *ngIf="accessError" class="ct-error">
+      <i class="fa-solid fa-circle-exclamation"></i> {{accessError}}
+    </div>
+  </div>
+
+  <div *ngIf="accessGranted" class="ct-card">
+    <h3>
+      <i class="fa-solid fa-users ct-icon"></i> Students in {{selectedClass}}
+      <span *ngIf="showDepartment">({{selectedDepartment}})</span>
+    </h3>
+    <div class="ct-form-row">
+      <input [(ngModel)]="newStudentName" placeholder="Add Student Name" class="ct-input" />
+      <button (click)="addStudent()" class="ct-btn ct-btn-green">
+        <i class="fa-solid fa-plus"></i> Add
+      </button>
+    </div>
+    <div *ngIf="loading" class="ct-loading">
+      <div class="ct-spinner"></div>
+    </div>
+    <ul class="ct-list" *ngIf="!loading && studentsInClass.length">
+      <li *ngFor="let student of studentsInClass" class="ct-list-item">
+        <span>{{student.fullName}}</span>
+        <button (click)="deleteStudent(student)" class="ct-btn ct-btn-red">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </li>
+    </ul>
+    <div *ngIf="!loading && !studentsInClass.length" class="ct-empty">
+      No students found.
+    </div>
+  </div>
+</div>

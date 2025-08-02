@@ -1,0 +1,76 @@
+<section class="student-dashboard-ultra py-5 min-vh-100 ultra-bg">
+  <div class="container">
+    <!-- Profile Card -->
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-6">
+        <div class="card shadow border-0 rounded-4 p-4 text-center bg-white animate__animated animate__fadeInDown">
+          <div class="mx-auto mb-3" style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #f8b500 0%, #fceabb 100%); display: flex; align-items: center; justify-content: center;">
+            <i class="bi bi-person-circle fs-1 text-white"></i>
+          </div>
+          <h2 class="fw-bold mb-1">{{ currentUser?.displayName || 'Student' }}</h2>
+          <div class="text-muted mb-2">{{ currentUser?.email }}</div>
+          <button class="btn btn-outline-primary btn-sm rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+            Edit Profile
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Cards -->
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card shadow-lg border-0 rounded-4 h-100 animate__animated animate__fadeInUp">
+          <div class="card-body text-center py-5">
+            <div class="mb-3">
+              <i class="bi bi-clipboard-check-fill fs-1 text-primary"></i>
+            </div>
+            <h5 class="card-title fw-semibold mb-2">Check Your Result</h5>
+            <p class="card-text text-muted mb-4">View your current term scores and subject grades.</p>
+            <a routerLink="/view-results" class="btn btn-primary rounded-pill px-4">Check Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-5">
+        <div class="card shadow-lg border-0 rounded-4 h-100 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+          <div class="card-body text-center py-5">
+            <div class="mb-3">
+              <i class="bi bi-journal-text fs-1 text-success"></i>
+            </div>
+            <h5 class="card-title fw-semibold mb-2">My Profile</h5>
+            <p class="card-text text-muted mb-4">Update personal details</p>
+            <button class="btn btn-outline-success rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+              Edit Profile
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <form class="modal-content" #profileForm="ngForm" (ngSubmit)="saveProfile()">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input type="text" id="fullName" class="form-control" [(ngModel)]="editProfile.fullName" name="fullName" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-control" [(ngModel)]="editProfile.email" name="email" required>
+            </div>
+            <!-- Add more fields as needed -->
+          </div>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

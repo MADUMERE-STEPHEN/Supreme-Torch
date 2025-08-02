@@ -1,0 +1,51 @@
+.admission-form-section {
+  background: #f7fafd;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.admission-form-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(30,58,138,0.10);
+  padding: 2.5rem 2rem 2rem 2rem;
+  max-width: 650px;
+  width: 100%;
+}
+
+.admission-form-title {
+  font-family: 'Clash Display', 'General Sans', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  text-align: center;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #1e3a8a;
+}
+
+.btn-primary {
+  background: #1e3a8a;
+  border: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  transition: background 0.18s;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background: #003366;
+}
+
+@media (max-width: 575.98px) {
+  .admission-form-card {
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+    border-radius: 1rem;
+  }
+  .admission-form-title {
+    font-size: 1.3rem;
+  }
+}

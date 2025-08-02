@@ -1,0 +1,86 @@
+<section class="admission-form-section py-5">
+  <div class="container">
+    <div class="admission-form-card mx-auto">
+      <h2 class="admission-form-title mb-4">Supreme Torch School Admission Form</h2>
+      <form>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="firstName" class="form-label">First Name<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="firstName" required>
+          </div>
+          <div class="col-md-6">
+            <label for="lastName" class="form-label">Last Name<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="lastName" required>
+          </div>
+          <div class="col-md-6">
+            <label for="dob" class="form-label">Date of Birth<span class="text-danger">*</span></label>
+            <input type="date" class="form-control" id="dob" required>
+          </div>
+          <div class="col-md-6">
+            <label for="gender" class="form-label">Gender<span class="text-danger">*</span></label>
+            <select class="form-select" id="gender" required>
+              <option value="" selected disabled>Select</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="email" class="form-label">Email Address<span class="text-danger">*</span></label>
+            <input type="email" class="form-control" id="email" required>
+          </div>
+          <div class="col-md-6">
+            <label for="phone" class="form-label">Phone Number<span class="text-danger">*</span></label>
+            <input type="tel" class="form-control" id="phone" required>
+          </div>
+          <div class="col-12">
+            <label for="address" class="form-label">Home Address<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="address" required>
+          </div>
+          <div class="col-md-6">
+            <label for="state" class="form-label">State of Origin<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="state" required>
+          </div>
+          <div class="col-md-6">
+            <label for="lga" class="form-label">LGA<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="lga" required>
+          </div>
+          <div class="col-md-6">
+            <label for="class" class="form-label">Class Applying For<span class="text-danger">*</span></label>
+            <select class="form-select" id="class" required>
+              <option value="" selected disabled>Select</option>
+              <option>JSS1</option>
+              <option>JSS2</option>
+              <option>JSS3</option>
+              <option>SS1</option>
+              <option>SS2</option>
+              <option>SS3</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="previousSchool" class="form-label">Previous School</label>
+            <input type="text" class="form-control" id="previousSchool">
+          </div>
+          <div class="col-12">
+            <label for="parentName" class="form-label">Parent/Guardian Name<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="parentName" required>
+          </div>
+          <div class="col-md-6">
+            <label for="parentPhone" class="form-label">Parent/Guardian Phone<span class="text-danger">*</span></label>
+            <input type="tel" class="form-control" id="parentPhone" required>
+          </div>
+          <div class="col-md-6">
+            <label for="parentEmail" class="form-label">Parent/Guardian Email</label>
+            <input type="email" class="form-control" id="parentEmail">
+          </div>
+          <div class="col-12">
+            <label for="additional" class="form-label">Additional Information</label>
+            <textarea class="form-control" id="additional" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-primary btn-lg">Submit Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

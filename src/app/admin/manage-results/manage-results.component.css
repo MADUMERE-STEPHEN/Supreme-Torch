@@ -1,0 +1,14 @@
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+}
+
+.card {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 2rem;
+  background: #fff;
+  margin-bottom: 2rem;
+}

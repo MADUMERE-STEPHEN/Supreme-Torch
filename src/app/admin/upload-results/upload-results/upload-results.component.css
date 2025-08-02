@@ -1,0 +1,104 @@
+/* --- Professional Upload Results Redesign --- */
+.admin-upload-section {
+  background: #f4f6fa;
+  min-height: 100vh;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.card {
+  border-radius: 2rem;
+  box-shadow: 0 6px 32px #0f172a13, 0 2px 8px #0001;
+  border: none;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  background: #fff;
+  transition: box-shadow 0.18s, transform 0.18s;
+}
+
+.card:hover {
+  box-shadow: 0 12px 40px #0f172a22, 0 4px 16px #0002;
+  transform: translateY(-2px) scale(1.01);
+}
+
+.form-label {
+  color: #1e293b;
+  font-size: 1.09rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.form-control-lg, .form-select-lg {
+  border-radius: 1rem;
+  font-size: 1.13rem;
+  padding: 0.85rem 1.1rem;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  color: #22223b;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control-lg:focus, .form-select-lg:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px #38bdf822;
+  background: #fff;
+}
+
+.btn-lg {
+  font-size: 1.13rem;
+  padding: 0.8rem 2.2rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.btn-success {
+  background: #38bdf8;
+  border: none;
+  color: #fff;
+  transition: background 0.18s;
+}
+
+.btn-success:hover, .btn-success:focus {
+  background: #0ea5e9;
+  color: #fff;
+}
+
+.btn-outline-primary, .btn-outline-danger {
+  border-width: 2px;
+  border-radius: 2rem;
+}
+
+.btn-outline-primary:hover, .btn-outline-danger:hover {
+  box-shadow: 0 2px 8px #38bdf844;
+}
+
+hr {
+  border-top: 2px solid #e2e8f0;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 991.98px) {
+  .card {
+    padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .admin-upload-section {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .card {
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    border-radius: 1.2rem;
+  }
+  .form-control-lg, .form-select-lg {
+    font-size: 1rem;
+    padding: 0.6rem 0.7rem;
+  }
+  .btn-lg {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+}

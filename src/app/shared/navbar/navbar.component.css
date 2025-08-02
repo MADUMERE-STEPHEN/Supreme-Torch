@@ -1,0 +1,63 @@
+.navbar-outer-wrap {
+  background: transparent;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  z-index: 20;
+  /* Optional: add a subtle shadow or gradient behind the navbar */
+}
+
+.custom-navbar {
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(16px);
+  border-radius: 2.5rem !important;
+  box-shadow: 0 8px 32px rgba(30,58,138,0.13), 0 1.5px 8px #0002;
+  transition: all 0.3s cubic-bezier(.77,0,.18,1);
+  margin: 0 auto;
+}
+
+.custom-navbar:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.navbar-nav .nav-link {
+  color: #ffffffd0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #facc15;
+  transition: width 0.3s;
+}
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
+.navbar-nav .nav-link:hover {
+  color: #facc15;
+}
+.apply-cta {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.apply-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(250,204,21,0.4);
+}
+
+@media (max-width: 991.98px) {
+  .navbar-outer-wrap {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .custom-navbar {
+    border-radius: 1.2rem !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+}

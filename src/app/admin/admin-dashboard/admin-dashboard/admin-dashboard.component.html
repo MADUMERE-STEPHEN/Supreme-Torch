@@ -1,0 +1,39 @@
+<section class="admin-dashboard-bg py-5 min-vh-100">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h1 class="display-5 fw-bold mb-2">Admin Dashboard</h1>
+        <p class="text-muted mb-0">Welcome, Admin. Manage users, results, and school data efficiently.</p>
+      </div>
+    </div>
+    <div class="row g-4 justify-content-center">
+
+      <!-- Results Management Card -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 rounded-4 h-100">
+          <div class="card-body text-center py-4">
+            <div class="mb-3">
+              <i class="bi bi-journal-check fs-1 text-success"></i>
+            </div>
+            <h5 class="card-title fw-semibold mb-2">Manage Results</h5>
+            <p class="card-text text-muted mb-3">Upload, edit, or review students' academic results.</p>
+            <a routerLink="/manage" class="btn btn-outline-success rounded-pill px-4">Go to Results</a>
+          </div>
+        </div>
+      </div>
+      <!-- School Data Card -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 rounded-4 h-100">
+          <div class="card-body text-center py-4">
+            <div class="mb-3">
+              <i class="bi bi-building fs-1 text-primary"></i>
+            </div>
+            <h5 class="card-title fw-semibold mb-2">School Data</h5>
+            <p class="card-text text-muted mb-3">Update school information, terms, and announcements.</p>
+            <a routerLink="/admin/school-data" class="btn btn-outline-primary rounded-pill px-4">Go to School Data</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

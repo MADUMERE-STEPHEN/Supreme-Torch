@@ -1,0 +1,76 @@
+<section class="result-checker-section py-5 bg-white" id="result">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-primary">Check Your Result</h2>
+      <p class="text-muted">Enter your details to see your performance.</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form (ngSubmit)="fetchResult()" #checkerForm="ngForm" class="card p-4 shadow-lg border-0">
+          <div class="mb-3">
+            <label class="form-label">Admission Number</label>
+            <input type="text" class="form-control" [(ngModel)]="checker.admissionNumber" name="admissionNumber" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Term</label>
+            <select class="form-select" [(ngModel)]="checker.term" name="term" required>
+              <option disabled selected>Select term</option>
+              <option>1st Term</option>
+              <option>2nd Term</option>
+              <option>3rd Term</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Session</label>
+            <input type="text" class="form-control" [(ngModel)]="checker.session" name="session" required placeholder="e.g. 2024/2025">
+          </div>
+
+          <div class="d-grid mt-3">
+            <button type="submit" class="btn btn-primary btn-lg rounded-pill">Check Result</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Result Display -->
+    <div class="row justify-content-center mt-5" *ngIf="foundResult">
+      <div class="col-lg-10">
+        <div class="card shadow-lg p-4 border-0">
+          <h4 class="mb-3">Result for: <strong>{{ foundResult.fullName }}</strong></h4>
+          <p class="text-muted">Class: {{ foundResult.class }} | Term: {{ foundResult.term }} | Session: {{ foundResult.session }}</p>
+          <hr>
+          <div class="table-responsive">
+            <table class="table table-bordered text-center">
+              <thead class="table-primary">
+                <tr>
+                  <th>Subject</th>
+                  <th>Test Score</th>
+                  <th>Exam Score</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let subject of foundResult.results">
+                  <td>{{ subject.subject }}</td>
+                  <td>{{ subject.test }}</td>
+                  <td>{{ subject.exam }}</td>
+                  <td>{{ subject.total }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-4 text-end">
+            <span class="fw-bold text-primary">Total Score: {{ foundResult.totalScore }}</span>
+            <span class="fw-bold ms-4 text-success">Percentage: {{ foundResult.percentage | number:'1.2-2' }}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Not Found -->
+    <div *ngIf="searchAttempted && !foundResult" class="text-center mt-4">
+      <p class="text-danger fw-semibold">❌ No result found for the provided details.</p>
+    </div>
+  </div>
+</section>

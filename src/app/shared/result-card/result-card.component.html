@@ -1,0 +1,31 @@
+<div class="card shadow-sm border-0 p-4">
+  <h4 class="fw-bold mb-3 text-primary">{{ result?.fullName }}</h4>
+  <p class="mb-2"><strong>Class:</strong> {{ result?.class }}</p>
+  <p class="mb-2"><strong>Term:</strong> {{ result?.term }}</p>
+  <p class="mb-2"><strong>Session:</strong> {{ result?.session }}</p>
+
+  <hr>
+
+  <table class="table table-bordered mt-3">
+    <thead class="table-light">
+      <tr>
+        <th>Subject</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let subject of result?.results">
+        <td>{{ subject?.subject }}</td>
+        <td>{{ subject?.score }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <p><strong>Total:</strong> {{ result?.total }}</p>
+  <p><strong>Average:</strong> {{ result?.average }}</p>
+  <p><strong>Grade:</strong> {{ result?.grade }}</p>
+  <p><strong>Remark:</strong> {{ result?.remark }}</p>
+
+</div>

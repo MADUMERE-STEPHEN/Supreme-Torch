@@ -1,0 +1,82 @@
+<div *ngIf="loading" class="loading-spinner">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<section class="admin-manage-results-section py-5 bg-white" id="manage-results">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-between mb-4 gap-3">
+      <h2 class="fw-bold text-primary mb-0">Manage Results</h2>
+      <div class="d-flex flex-wrap gap-2">
+        <select class="form-select" [(ngModel)]="filter.class" (change)="filterResults()">
+          <option value="">All Classes</option>
+          <option *ngFor="let c of classList">{{c}}</option>
+        </select>
+        <select class="form-select" [(ngModel)]="filter.term" (change)="filterResults()">
+          <option value="">All Terms</option>
+          <option>1st Term</option>
+          <option>2nd Term</option>
+          <option>3rd Term</option>
+        </select>
+        <select class="form-select" [(ngModel)]="filter.session" (change)="filterResults()">
+          <option value="">All Sessions</option>
+          <option *ngFor="let s of sessionList">{{s}}</option>
+        </select>
+        <input type="text" class="form-control" placeholder="Search name or admission no." [(ngModel)]="filter.search" (input)="filterResults()">
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle text-center">
+        <thead class="table-primary">
+          <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Admission No.</th>
+            <th>Class</th>
+            <th>Term</th>
+            <th>Session</th>
+            <th>Total Score</th>
+            <th>Percentage</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let result of filteredResults; let i = index">
+            <td>{{i + 1}}</td>
+            <td *ngIf="editIndex !== i">{{result.fullName}}</td>
+            <td *ngIf="editIndex === i"><input [(ngModel)]="editResult.fullName" class="form-control form-control-sm"></td>
+            <td *ngIf="editIndex !== i">{{result.admissionNumber}}</td>
+            <td *ngIf="editIndex === i"><input [(ngModel)]="editResult.admissionNumber" class="form-control form-control-sm"></td>
+            <td *ngIf="editIndex !== i">{{result.class}}</td>
+            <td *ngIf="editIndex === i"><input [(ngModel)]="editResult.class" class="form-control form-control-sm"></td>
+            <td *ngIf="editIndex !== i">{{result.term}}</td>
+            <td *ngIf="editIndex === i"><input [(ngModel)]="editResult.term" class="form-control form-control-sm"></td>
+            <td *ngIf="editIndex !== i">{{result.session}}</td>
+            <td *ngIf="editIndex === i"><input [(ngModel)]="editResult.session" class="form-control form-control-sm"></td>
+            <td *ngIf="editIndex !== i">{{result.totalScore}}</td>
+            <td *ngIf="editIndex === i"><input [(ngModel)]="editResult.totalScore" class="form-control form-control-sm" type="number"></td>
+            <td *ngIf="editIndex !== i">{{result.percentage | number:'1.2-2'}}%</td>
+            <td *ngIf="editIndex === i"><input [(ngModel)]="editResult.percentage" class="form-control form-control-sm" type="number"></td>
+            <td>
+              <ng-container *ngIf="editIndex !== i">
+                <button class="btn btn-sm btn-outline-info me-1" (click)="startEdit(i)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteResult(result)">
+                  Delete
+                </button>
+              </ng-container>
+              <ng-container *ngIf="editIndex === i">
+                <button class="btn btn-sm btn-success me-1" (click)="saveEdit(result)">Save</button>
+                <button class="btn btn-sm btn-secondary" (click)="cancelEdit()">Cancel</button>
+              </ng-container>
+            </td>
+          </tr>
+          <tr *ngIf="filteredResults.length === 0">
+            <td colspan="9" class="text-center text-muted">No results found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

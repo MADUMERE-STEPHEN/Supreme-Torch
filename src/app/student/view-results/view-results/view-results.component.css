@@ -1,0 +1,78 @@
+.result-checker-section {
+  background: linear-gradient(to bottom right, #f0f4ff, #ffffff);
+  min-height: 100vh;
+}
+
+/* Ultra Mode Styles */
+.ultra-bg {
+  background: linear-gradient(120deg, #f7fafc 60%, #38bdf8 100%);
+}
+.ultra-card {
+  border-radius: 2rem;
+  background: rgba(255,255,255,0.98);
+  box-shadow: 0 8px 40px #38bdf822, 0 2px 8px #0001;
+  transition: box-shadow 0.2s;
+}
+.ultra-card:hover {
+  box-shadow: 0 16px 64px #38bdf844, 0 4px 16px #0002;
+}
+.ultra-title {
+  font-size: 2.2rem;
+  letter-spacing: -1px;
+  background: linear-gradient(90deg, #38bdf8 60%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.ultra-lead {
+  font-size: 1.08rem;
+  color: #64748b;
+}
+.ultra-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #38bdf8 60%, #fbbf24 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.6rem auto;
+  font-size: 2rem;
+  color: #fff;
+  box-shadow: 0 2px 12px #38bdf822;
+}
+.ultra-input {
+  border-radius: 1.2rem;
+  border: 1.5px solid #cbd5e1;
+  background: #f8fafc;
+  font-size: 1.13rem;
+  transition: border-color 0.18s;
+}
+.ultra-input:focus {
+  border-color: #38bdf8;
+  background: #fff;
+  box-shadow: 0 0 0 2px #38bdf822;
+}
+.btn-gradient {
+  background: linear-gradient(90deg, #38bdf8 60%, #fbbf24 100%);
+  color: #181c2b;
+  border: none;
+  font-weight: 700;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  box-shadow: 0 2px 12px #38bdf822;
+}
+.btn-gradient:hover, .btn-gradient:focus {
+  background: #fbbf24;
+  color: #181c2b;
+  box-shadow: 0 4px 24px #38bdf844;
+}
+.ultra-alert {
+  border-radius: 1rem;
+  font-size: 1.05rem;
+}
+.ultra-placeholder {
+  opacity: 0.7;
+  font-size: 1.1rem;
+}
+@media (max-width: 991.98px) {
+  .ultra-card { margin-bottom: 2.5rem; }
+}
