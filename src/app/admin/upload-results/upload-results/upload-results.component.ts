@@ -131,7 +131,17 @@ export class UploadResultsComponent {
     const resultToUpload = {
       ...this.newResult,
       classKey,
-      department: this.selectedDepartment || null
+      department: this.selectedDepartment || null,
+      totalScore: this.totalScore,
+      percentage: this.percentage,
+      results: this.newResult.results.map(sub => ({ 
+        subject: sub.subject,
+        test: Number(sub.test) || 0,
+        exam: Number(sub.exam) || 0,
+        total: sub.total
+      })),
+      createdAt: new Date().toISOString()
+
     };
 
     // Upload result

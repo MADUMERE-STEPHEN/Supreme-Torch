@@ -25,7 +25,7 @@ export class ViewResultsComponent {
   constructor(private firestore: Firestore) {}
 
   async fetchResult() {
-    const resultCollection = collection(this.firestore, 'studentResults');
+    const resultCollection = collection(this.firestore, 'results');
     const q = query(
       resultCollection,
       where('admissionNumber', '==', this.checker.admissionNumber),

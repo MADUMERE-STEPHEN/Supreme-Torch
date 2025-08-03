@@ -1,21 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
 import { RouterLink } from '@angular/router';
+import { Firestore, collection, collectionData, doc, updateDoc, deleteDoc } from '@angular/fire/firestore';
+import { inject } from '@angular/core';
+import { docData } from '@angular/fire/firestore';
+
 @Component({
-  standalone: true,
-  imports: [FormsModule, CommonModule, RouterLink],
   selector: 'app-manage-results',
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './manage-results.component.html',
   styleUrls: ['./manage-results.component.css']
 })
 export class ManageResultsComponent implements OnInit {
+  private firestore: Firestore = inject(Firestore);
+
   results: any[] = [];
   filteredResults: any[] = [];
   classList: string[] = ['JSS1', 'JSS2', 'JSS3', 'SS1', 'SS2', 'SS3'];
-  sessionList: string[] = ['2023/2024', '2024/2025'];
+  sessionList: string[] = ['2023/2024', '2024/2025', '2025/2026', '2026/2027'];
   filter = {
     class: '',
     term: '',
@@ -26,15 +30,12 @@ export class ManageResultsComponent implements OnInit {
   editResult: any = {};
   loading = false;
 
-  constructor(private firestore: AngularFirestore) {}
-
   ngOnInit() {
     this.loading = true;
-    this.firestore.collection('results').snapshotChanges().subscribe(snapshot => {
-      this.results = snapshot.map(doc => ({
-        id: doc.payload.doc.id,
-        ...doc.payload.doc.data() as any
-      }));
+    const resultsRef = collection(this.firestore, 'results');
+
+    collectionData(resultsRef, { idField: 'id' }).subscribe(snapshot => {
+      this.results = snapshot;
       this.filterResults();
       this.loading = false;
     });
@@ -59,12 +60,12 @@ export class ManageResultsComponent implements OnInit {
     this.editResult = { ...this.filteredResults[index] };
   }
 
-  saveEdit(result: any) {
+  async saveEdit(result: any) {
     if (!result.id) return;
-    this.firestore.collection('results').doc(result.id).update(this.editResult).then(() => {
-      this.editIndex = null;
-      this.editResult = {};
-    });
+    const resultDoc = doc(this.firestore, 'results', result.id);
+    await updateDoc(resultDoc, this.editResult);
+    this.editIndex = null;
+    this.editResult = {};
   }
 
   cancelEdit() {
@@ -72,13 +73,12 @@ export class ManageResultsComponent implements OnInit {
     this.editResult = {};
   }
 
-  deleteResult(result: any) {
+  async deleteResult(result: any) {
     if (confirm('Are you sure you want to delete this result?')) {
       this.loading = true;
-      this.firestore.collection('results').doc(result.id).delete().finally(() => {
-        this.loading = false;
-      });
+      const resultDoc = doc(this.firestore, 'results', result.id);
+      await deleteDoc(resultDoc);
+      this.loading = false;
     }
   }
 }
-

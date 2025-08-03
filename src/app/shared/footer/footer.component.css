@@ -42,7 +42,7 @@
 }
 .footer-links {
   display: flex;
-  flex: 2 1 500px;
+  flex: 2 1 ;
   gap: 3.5rem;
   justify-content: flex-end;
   min-width: 260px;
@@ -80,14 +80,45 @@
   margin: 0 auto;
 }
 
+
+
 @media (max-width: 900px) {
   .footer-container {
     flex-direction: column;
     gap: 2rem;
-    align-items: flex-start;
+
   }
   .footer-bottom {
     text-align: left;
     padding-top: 1.5rem;
   }
+  
+  .footer-links {
+    justify-content: center;
+    text-align: center;
+  }
+  .footer-links > div {
+    margin-bottom: 1.5rem;
+  }
+  .footer-brand {
+    align-items: center;
+    text-align: center;
+  }
+  .footer-brand svg {
+    margin: 0 auto 1.2rem auto;
+  }
+  .footer-address {
+    text-align: center;
+  }
+  .footer-note {
+    text-align: center;
+  }
+  .footer-link-title {
+    text-align: center;
+  }
+  .footer-links a {
+    font-size: 0.90rem;
+  }
+
+  
 }
