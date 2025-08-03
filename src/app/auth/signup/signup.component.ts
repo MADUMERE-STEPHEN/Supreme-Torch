@@ -55,4 +55,10 @@ export class SignupComponent {
       }
     });
   }
+    onGoogleLogin() {
+  this.auth.googleLogin().catch((error: any) => {
+    console.log(error);
+    alert('Google login failed');
+  });
+}
 }

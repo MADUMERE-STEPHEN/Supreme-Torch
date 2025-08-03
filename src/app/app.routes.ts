@@ -12,6 +12,7 @@ import { UploadResultsComponent } from './admin/upload-results/upload-results/up
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard/admin-dashboard.component';
 import { ManageResultsComponent } from './admin/manage-results/manage-results.component';
 import { ClassTeacherComponent } from './admin/class-teacher/class-teacher.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,6 +27,8 @@ export const routes: Routes = [
 {path: 'adminDashboard', component: AdminDashboardComponent},
 {path: 'manage', component: ManageResultsComponent},
 {path: 'classDashboard', component: ClassTeacherComponent},
+{ path: 'forgot-password', component: ForgotPasswordComponent },
+
   // fallback
   { path: '**', redirectTo: '' }
 ];

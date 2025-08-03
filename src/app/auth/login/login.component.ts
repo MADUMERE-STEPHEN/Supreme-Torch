@@ -4,6 +4,7 @@ import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
   imports: [CommonModule, FormsModule, RouterLink],
@@ -14,15 +15,27 @@ import { FormsModule } from '@angular/forms';
 export class LoginComponent {
   email = '';
   password = '';
-errorMsg = '';
-  authService: any;
-
+  errorMsg = '';
+  message = '';
   constructor(
     private auth: Auth,
     private firestore: Firestore,
-    private router: Router
+    private router: Router,
+    public authService: AuthService // properly injected
   ) {}
 
+ resendEmail() {
+    const user = this.auth.currentUser;
+    if (user) {
+      this.authService.resendVerificationEmail(user).then(() => {
+        this.message = 'Verification email resent!';
+      }).catch(() => {
+        this.message = 'Could not resend email. Please try again later.';
+      });
+    } else {
+      this.message = 'No user found.';
+    }
+  }
   async login() {
     try {
       const cred = await signInWithEmailAndPassword(this.auth, this.email, this.password);
@@ -37,4 +50,11 @@ errorMsg = '';
       alert('❌ Login failed: ' + (err.message || err));
     }
   }
+  onGoogleLogin() {
+  this.authService.googleLogin().catch((error: any) => {
+    console.log(error);
+    alert('Google login failed');
+  });
+}
+
 }
